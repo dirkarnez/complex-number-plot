@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complex Number Plot</title>
+    <!-- Include the ECharts file you just downloaded -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@6.0.0/dist/echarts.min.js"></script>
+</head>
+<body>
+    <!-- Prepare a DOM with a defined width and height for ECharts -->
+    <div id="main" style="width: 600px;height:600px;"></div>
+    <script type="text/javascript">
+      // Initialize the echarts instance based on the prepared dom
+      const myChart = echarts.init(document.getElementById('main'), 'dark', { renderer: 'canvas'  /* 'svg' */});
+
+      const data = Array
+        .from({length: 25000})
+        .map((e, i) => {
+          const t = i * 0.001
+          const x = Math.cos(t);
+          const y = Math.sin(t);
+          const z = t;
+          return [x, y, z];
+        });
+
+      debugger;
+
+      const option = {
+        tooltip: {},
+        backgroundColor: '#fff',
+        xAxis3D: {
+          type: 'value',
+          name: "Real (X)",
+          splitArea: {
+            show: true
+          }
+        },
+        yAxis3D: {
+          type: 'value',
+          name: "Imaginary (Y)",
+          splitArea: {
+            show: true
+          }
+        },
+        zAxis3D: {
+          type: 'value',
+          name: "Time (Z)",
+          splitArea: {
+            show: true
+          }
+        },
+        grid3D: {
+          viewControl: {
+            projection: 'orthographic'
+          }
+        },
+        series: [
+          {
+            type: 'line3D',
+            data: data,
+            lineStyle: {
+              width: 10
+            }
+          }
+        ]
+      };
+
+      // Display the chart using the configuration items and data just specified.
+      myChart.setOption(option);
+    </script>
+</body>
+</html>
