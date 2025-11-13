@@ -7,21 +7,31 @@ for (var t = 0; t < 25; t += 0.001) {
   var z = t;
   data.push([x, y, z]);
 }
+
 console.log(data.length);
 option = {
   tooltip: {},
   backgroundColor: '#fff',
   xAxis3D: {
     type: 'value',
-    name: "Real (X)"
+    name: "Real (X)",
+    splitArea: {
+      show: true
+    }
   },
   yAxis3D: {
     type: 'value',
-    name: "Imaginary (Y)"
+    name: "Imaginary (Y)",
+    splitArea: {
+      show: true
+    }
   },
   zAxis3D: {
     type: 'value',
-    name: "Time (Z)"
+    name: "Time (Z)",
+    splitArea: {
+      show: true
+    }
   },
   grid3D: {
     viewControl: {
@@ -33,7 +43,6 @@ option = {
       type: 'line3D',
       data: data,
       lineStyle: {
-      
         width: 10
       }
     }
